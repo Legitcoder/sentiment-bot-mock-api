@@ -34,11 +34,11 @@ function seedData() {
             "firstName": firstName,
             "lastName": lastName,
             "image": image,
-            "teamId": getRandomInt(0, 500)
+            "teamId": getRandomInt(0, 50)
         });
     }
     //Generate Teams
-    for(var id = 0; id < 500; id++) { 
+    for(var id = 0; id < 50; id++) { 
 
         //Team Attributes
         var teamName = faker.lorem.word();
@@ -62,8 +62,7 @@ function seedData() {
                 "id": id,
                 "mood": mood,
                 "emoji": emoji,
-                "surveyId": getRandomInt(0, 600),
-                "responseId": getRandomInt(0, 600)
+                "surveyId": getRandomInt(0, 600)
             });
         }
 
@@ -71,21 +70,12 @@ function seedData() {
         for(var id = 0; id < 600; id++) { 
 
             var question = faker.lorem.words(5);
-            var date = faker.date.recent()
-            //Feelzies Attribute
+            //Surveys Attribute
             surveys.push({
                 "id": id,
                 "schedule": "",
                 "question": question,
-                "teamId":  getRandomInt(0, 500)
-            });
-
-            sentSurveys.push({
-                "id": id,
-                "date": date,
-                "userId": getRandomInt(0, 200),
-                "surveyId": getRandomInt(0, 600),
-                "teamId":  getRandomInt(0, 500)
+                "teamId":  getRandomInt(0, 50)
             });
         }
 
@@ -97,6 +87,10 @@ function seedData() {
             var longitude = faker.address.longitude()
             var latitude = faker.address.latitude()
             var image = faker.image.people()
+            var emoji = emojis[Math.floor(Math.random()*emojis.length)]
+            var mood = faker.lorem.word();
+
+            
             responses.push({
                 "id": id,
                 "date": date,
@@ -104,11 +98,13 @@ function seedData() {
                 "latitude": "40.730610",
                 "image": image,
                 "userId":  getRandomInt(0, 200),
-                "surveyId": getRandomInt(0, 600)
+                "surveyId": getRandomInt(0, 600),
+                "mood": mood,
+                "emoji": emoji,
             });
         }
 
-    return { "users": users, "teams": teams, "responses": responses, "surveys": surveys, "sentSurveys": sentSurveys, "feelings": feelings }
+    return { "users": users, "teams": teams, "responses": responses, "surveys": surveys, "feelings": feelings }
 }
 
 
